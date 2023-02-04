@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 
 import styles from './GalleryDetail.module.css';
 
-const GalleryDetail = ({ galleryDetail }) => {
-  const { largeImageURL, tags } = galleryDetail;
+const GalleryDetail = ({ largeImageURL, tags }) => {
   return <img className={styles.img} src={largeImageURL} alt={tags}></img>;
 };
 
 export default GalleryDetail;
 
 GalleryDetail.propTypes = {
-  galleryDetail: PropTypes.object.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
 };

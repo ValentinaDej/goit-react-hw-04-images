@@ -1,64 +1,40 @@
-import { Component } from 'react';
+import { memo } from 'react';
+
+import useForm from 'shared/hooks/useForm';
 
 import styles from './Searchbar.module.css';
+import initialState from './initialState';
 
-class Searchbar extends Component {
-  state = {
-    search: '',
-  };
+const Searchbar = ({ onSubmit }) => {
+  const { state, setState, handleChange, handleSubmit } = useForm({
+    initialState,
+    onSubmit,
+  });
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const { onSubmit } = this.props;
-    const result = onSubmit({ ...this.state });
+  const { search } = state;
+  return (
+    <>
+      <header className={styles.Searchbar}>
+        <form className={styles.SearchForm} onSubmit={handleSubmit}>
+          <button type="submit" className={styles.SearchFormButton}>
+            <span className={styles.SearchFormButtonLabel}>Search</span>
+          </button>
 
-    if (result) {
-      this.reset();
-    }
-  };
+          <input
+            name="search"
+            value={search}
+            onChange={handleChange}
+            className={styles.SearchFormInput}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            required
+          />
+        </form>
+      </header>
+    </>
+  );
+};
 
-  reset() {
-    this.setState({
-      search: '',
-    });
-  }
-
-  handleChange = ({ target }) => {
-    const { name, value } = target;
-
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  render() {
-    const { search } = this.state;
-    const { handleSubmit, handleChange } = this;
-
-    return (
-      <>
-        <header className={styles.Searchbar}>
-          <form className={styles.SearchForm} onSubmit={handleSubmit}>
-            <button type="submit" className={styles.SearchFormButton}>
-              <span className={styles.SearchFormButtonLabel}>Search</span>
-            </button>
-
-            <input
-              name="search"
-              value={search}
-              onChange={handleChange}
-              className={styles.SearchFormInput}
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-              required
-            />
-          </form>
-        </header>
-      </>
-    );
-  }
-}
-
-export default Searchbar;
+export default memo(Searchbar);

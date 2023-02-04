@@ -19,7 +19,6 @@ const searchGallery = async (q, page = 1) => {
       page,
     },
   });
-
   return data;
 };
 
