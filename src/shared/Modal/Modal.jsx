@@ -13,7 +13,7 @@ const Modal = ({ children, closeModal }) => {
     return () => {
       document.removeEventListener('keydown', close);
     };
-  }, []);
+  }, [close]);
 
   function close({ target, currentTarget, code }) {
     if (target === currentTarget || code === 'Escape') {
