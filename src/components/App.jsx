@@ -35,7 +35,7 @@ const App = () => {
       };
       fetchGallery();
     }
-  }, [search, page, setLoading, setItems, setError, searchGallery]);
+  }, [search, page, setLoading, setItems, setError]);
 
   const getData = useCallback(({ search }) => {
     setSearch(search);

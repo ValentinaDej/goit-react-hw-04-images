@@ -6,7 +6,7 @@ import styles from './Searchbar.module.css';
 import initialState from './initialState';
 
 const Searchbar = ({ onSubmit }) => {
-  const { state, setState, handleChange, handleSubmit } = useForm({
+  const { state, handleChange, handleSubmit } = useForm({
     initialState,
     onSubmit,
   });
